@@ -1,0 +1,249 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\VCTest.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\VCTest.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 VCTest"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "VCTest 1.0 版",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2013",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_VCTEST_DIALOG DIALOGEX 0, 0, 664, 396
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "VCTest"
+FONT 9, "宋体"
+BEGIN
+    PUSHBUTTON      "扫描设备",IDC_BUTTON_SCAN,491,220,50,14
+    PUSHBUTTON      "连接设备",IDC_BUTTON_CONNECT,491,240,50,14
+    CONTROL         "",IDC_STATIC_BIGIMAGE,"Static",SS_BLACKFRAME,0,3,346,
+                    213
+    CONTROL         "",IDC_STATIC_CIFIMAGE,"Static",SS_BLACKFRAME,0,223,186,
+                    161
+    CONTROL         "",IDC_STATIC_PLATEIMAGE,"Static",SS_BLACKFRAME,192,230,
+                    159,38
+    CONTROL         "",IDC_STATIC_PLATE,"Static",SS_BLACKFRAME,192,281,160,
+                    35
+    GROUPBOX        "设备列表",IDC_STATIC,351,2,307,209
+    CONTROL         "List1",IDC_LIST_DEVICE,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,355,10,298,192
+    PUSHBUTTON      "模拟抓拍",IDC_BUTTON_CAPTURE,556,241,50,14
+    PUSHBUTTON      "校时",IDC_BUTTON_VERIFYTIME,491,281,50,14
+    PUSHBUTTON      "设置网络参数",IDC_BUTTON_SETNETPARAMS,490,303,56,14
+    CONTROL         "NTP校时",IDC_CHECK_NTP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,558,285,44,10
+    CONTROL         "TCP",IDC_CHECK_TCP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,558,304,28,10
+    PUSHBUTTON      "断开设备",IDC_BUTTON_DISCONNECT,491,261,50,14
+    CONTROL         "启用定时器",IDC_CHECK_TIMER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,600,325,56,10
+    EDITTEXT        IDC_EDIT_TIMEOUT,549,325,40,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "时间间隔",IDC_STATIC,495,326,45,16
+    PUSHBUTTON      "控制参数",IDC_BUTTON_GETPARAMS,591,351,50,14
+    GROUPBOX        "已连接设备",IDC_STATIC,361,215,120,175
+    CONTROL         "Tree1",IDC_TREE_DEVICE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_CHECKBOXES | 
+                    WS_BORDER | WS_TABSTOP,365,228,108,154
+    PUSHBUTTON      "获取版本",IDC_BUTTON_GETVERSION,496,353,50,14
+    PUSHBUTTON      "获取算法参数",IDC_BUTTON_GETALGPARAMS,591,374,50,14
+    CONTROL         "高解析度使能",IDC_CHECK_HIGHT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,558,265,64,10
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "VCTest Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "VCTest\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2013\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "VCTest.EXE\0"
+            VALUE "ProductName", "VCTest 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_VCTEST_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 657
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 389
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_PICMENU MENU DISCARDABLE 
+BEGIN
+    MENUITEM "放大",                        IDM_ZOOMVALID
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 VCTest(&A)..."
+END
+
+#endif    // Chinese (中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\VCTest.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

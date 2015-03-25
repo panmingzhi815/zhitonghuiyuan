@@ -1,0 +1,8 @@
+D:\汉王智通\停车场标清一体机\TECHSUPPORT-SDK\ZTPark\CSharpTest\CSharpTest\obj\Release\ResolveAssemblyReference.cache
+D:\汉王智通\停车场标清一体机\TECHSUPPORT-SDK\ZTPark\CSharpTest\CSharpTest\obj\Release\CSharpTest.Form1.resources
+D:\汉王智通\停车场标清一体机\TECHSUPPORT-SDK\ZTPark\CSharpTest\CSharpTest\obj\Release\CSharpTest.Properties.Resources.resources
+D:\汉王智通\停车场标清一体机\TECHSUPPORT-SDK\ZTPark\CSharpTest\CSharpTest\obj\Release\CSharpTest.csproj.GenerateResource.Cache
+D:\汉王智通\停车场标清一体机\TECHSUPPORT-SDK\ZTPark\CSharpTest\CSharpTest\bin\Release\CSharpTest.exe
+D:\汉王智通\停车场标清一体机\TECHSUPPORT-SDK\ZTPark\CSharpTest\CSharpTest\bin\Release\CSharpTest.pdb
+D:\汉王智通\停车场标清一体机\TECHSUPPORT-SDK\ZTPark\CSharpTest\CSharpTest\obj\Release\CSharpTest.exe
+D:\汉王智通\停车场标清一体机\TECHSUPPORT-SDK\ZTPark\CSharpTest\CSharpTest\obj\Release\CSharpTest.pdb
