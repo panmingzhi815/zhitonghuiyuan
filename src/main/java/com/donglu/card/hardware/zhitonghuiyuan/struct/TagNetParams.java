@@ -5,10 +5,10 @@ import com.sun.jna.Structure;
 
 public class TagNetParams extends Structure {
 
-	public String ucDeviceIP;
-	public String ucMaskIP;
-	public String ucGateIP;
-	public String ucMac;
+	public byte ucDeviceIP[] = new byte[100];
+	public byte ucMaskIP[] = new byte[100];
+	public byte ucGateIP[] = new byte[100];
+	public byte ucMac[] = new byte[100];
 
 	public static class ByReference extends TagNetParams implements Structure.ByReference {
 	}

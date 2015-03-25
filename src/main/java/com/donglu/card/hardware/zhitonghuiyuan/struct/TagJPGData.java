@@ -7,7 +7,7 @@ import com.sun.jna.ptr.IntByReference;
 public class TagJPGData extends Structure {
 
 	public IntByReference pDeviceHandle;
-	public String ucDeviceIP;
+	public byte ucDeviceIP[] = new byte[100];
 	public byte pucImage[] = new byte[2048];
 	public int uiImageLen;
 	public int usImageWidth;

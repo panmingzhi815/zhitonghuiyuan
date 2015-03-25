@@ -61,7 +61,7 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 			};
 			int lpr_Init = HvDevice.LPR_Init(null,Pointer.NULL, deviceInfoCallback, deviceStatusCallback, dataCallback, jpgStreamCallBack);
 			LOGGER.info("初始化智通慧眼设备：{} 返回状态:{}",ip,lpr_Init);
-			IntByReference hwnd = new IntByReference(0);
+			IntByReference hwnd = new IntByReference(1);
 			result = HvDevice.LPR_ConnectCamera(ip, hwnd);
 			pointerMap.put(ip, hwnd);
 			LOGGER.info("连接智通慧眼设备：{} 返回状态:{}",ip,result);
@@ -101,13 +101,14 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 	}
 	
 	public static void main(String[] args) {
-		ZhiTongHuiYuan zhiTongHuiYuan = new ZhiTongHuiYuanImpl();
-		zhiTongHuiYuan.openDevice(args[0], new VehicleDataCallback() {
-			
+		VehicleDataCallback vehicleDataCallback = new VehicleDataCallback() {
 			public void invoke(Pointer pUserData, TagVehicleData pData) {
 				LOGGER.info("收到车牌识别仪{} 车牌结果{}",pData.ucDeviceIP,pData.ucPlate);
 			}
-		});
+		};
+		
+		ZhiTongHuiYuan zhiTongHuiYuan = new ZhiTongHuiYuanImpl();
+		zhiTongHuiYuan.openDevice(args[0], vehicleDataCallback);
 		
 		for (int i = 0; i < 500; i++) {
 			try {
