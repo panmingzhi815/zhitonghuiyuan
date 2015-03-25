@@ -8,13 +8,13 @@ public class TagJPGData extends Structure {
 
 	public IntByReference pDeviceHandle;
 	public String ucDeviceIP;
-	public String pucImage;
-	public Integer uiImageLen;
-	public Short usImageWidth;
-	public Short usImageHeight;
-	public Short usLeft;
-	public Short usRight;
-	public Short usTop;
-	public Short usBottom;
+	public byte pucImage[] = new byte[2048];
+	public int uiImageLen;
+	public int usImageWidth;
+	public int usImageHeight;
+	public int usLeft;
+	public int usRight;
+	public int usTop;
+	public int usBottom;
 	
 }

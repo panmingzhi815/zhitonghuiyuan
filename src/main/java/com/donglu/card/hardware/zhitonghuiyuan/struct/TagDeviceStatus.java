@@ -8,5 +8,5 @@ public class TagDeviceStatus extends Structure {
 	
 	public IntByReference pHandle;
 	public String ucDeviceIP;
-	public Integer status;
+	public int status;
 }

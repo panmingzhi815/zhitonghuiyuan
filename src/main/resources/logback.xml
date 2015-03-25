@@ -10,9 +10,9 @@
 
 	<appender name="HARDWARE_MESSAGE_DEBUG"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>log/hardware/message.txt</file>
+		<file>message.txt</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>log/hardware/message-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+			<fileNamePattern>message-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
 			<maxHistory>15</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>10MB</maxFileSize>
@@ -31,10 +31,5 @@
 		<appender-ref ref="HARDWARE_MESSAGE_DEBUG" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-	
-	<root level="DEBUG">
-		<appender-ref ref="HARDWARE_MESSAGE_DEBUG" />
-		<appender-ref ref="STDOUT" />
-	</root>
 	
 </configuration>

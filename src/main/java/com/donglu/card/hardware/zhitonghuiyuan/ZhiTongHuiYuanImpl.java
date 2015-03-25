@@ -105,7 +105,7 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 		zhiTongHuiYuan.openDevice(args[0], new VehicleDataCallback() {
 			
 			public void invoke(Pointer pUserData, TagVehicleData pData) {
-				System.out.println(pData.ucDeviceIP);
+				LOGGER.info("收到车牌识别仪{} 车牌结果{}",pData.ucDeviceIP,pData.ucPlate);
 			}
 		});
 		
