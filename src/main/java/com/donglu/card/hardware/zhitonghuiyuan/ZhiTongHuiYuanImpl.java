@@ -60,10 +60,11 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 					
 				}
 			};
-			
+			ZhitongLibrary.INSTANCE.LPR_IsWriteLog((byte)1);
 			int lpr_Init2 = ZhitongLibrary.INSTANCE.LPR_Init(null, Pointer.NULL, deviceInfoCallback, deviceStatusCallback, dataCallback, jpgStreamCallBack);
 			LOGGER.info("初始化智通慧眼设备：{} 返回状态:{}",ip,lpr_Init2);
 			PointerByReference pHandle = new PointerByReference();
+			pHandle.setValue(Pointer.createConstant(1));
 			ByteBuffer sendBuffer=ByteBuffer.wrap(ip.getBytes("UTF-8"));
 			result = ZhitongLibrary.INSTANCE.LPR_ConnectCamera(sendBuffer,pHandle);
 

@@ -1,9 +1,10 @@
 package com.donglu.card.hardware.zhitonghuiyuan;
 
-import com.donglu.card.hardware.zhitonghuiyuan.callback.DeviceInfoCallback;
-import com.donglu.card.hardware.zhitonghuiyuan.callback.DeviceStatusCallback;
-import com.donglu.card.hardware.zhitonghuiyuan.callback.JPGStreamCallBack;
-import com.donglu.card.hardware.zhitonghuiyuan.callback.VehicleDataCallback;
+import zhitong.ZhitongLibrary.DeviceInfoCallback;
+import zhitong.ZhitongLibrary.DeviceStatusCallback;
+import zhitong.ZhitongLibrary.JPGStreamCallBack;
+import zhitong.ZhitongLibrary.VehicleDataCallback;
+
 import com.sun.jna.Library;
 import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.WinDef.HWND;

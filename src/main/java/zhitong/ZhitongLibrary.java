@@ -8,6 +8,7 @@ import com.sun.jna.Callback;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
 import com.sun.jna.Pointer;
+import com.sun.jna.platform.win32.WinDef.HWND;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
 import com.sun.jna.win32.StdCallLibrary;
@@ -227,7 +228,7 @@ public interface ZhitongLibrary extends StdCallLibrary {
 	@Deprecated 
 	int LPR_GetErrorMsg(int FeekCode, Pointer pchErrMsg);
 	int LPR_GetErrorMsg(int FeekCode, ByteBuffer pchErrMsg);
-	int LPR_Init(com.sun.jna.platform.win32.WinDef.HWND hWnd, Pointer pUserData, ZhitongLibrary.DeviceInfoCallback fucDeviceInfo, ZhitongLibrary.DeviceStatusCallback fucStatus, ZhitongLibrary.VehicleDataCallback fucVehicleData, ZhitongLibrary.JPGStreamCallBack fucJPGStream);
+	int LPR_Init(HWND hWnd, Pointer pUserData, ZhitongLibrary.DeviceInfoCallback fucDeviceInfo, ZhitongLibrary.DeviceStatusCallback fucStatus, ZhitongLibrary.VehicleDataCallback fucVehicleData, ZhitongLibrary.JPGStreamCallBack fucJPGStream);
 	void LPR_Quit();
 	int LPR_ScanDevice();
 	int LPR_SetNetParams(Pointer pHandle, tagNetParams pOldParams, tagNetParams pNewParams);
