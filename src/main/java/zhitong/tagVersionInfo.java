@@ -1,6 +1,6 @@
 package zhitong;
+import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -8,31 +8,16 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class tagVersionInfo extends Structure {
-	/**
-	 * \u4e3b\u7248\u672c<br>
-	 * C type : unsigned char[255]
-	 */
+public class tagVersionInfo extends Structure<tagVersionInfo, tagVersionInfo.ByValue, tagVersionInfo.ByReference > {
+	/** \u4e3b\u7248\u672c */
 	public byte[] ucMainVer = new byte[255];
-	/**
-	 * \u6b21\u7248\u672c<br>
-	 * C type : unsigned char[255]
-	 */
+	/** \u6b21\u7248\u672c */
 	public byte[] ucDSPVer = new byte[255];
-	/**
-	 * MCU\u7248\u672c<br>
-	 * C type : unsigned char[255]
-	 */
+	/** MCU\u7248\u672c */
 	public byte[] ucMCUVer = new byte[255];
-	/**
-	 * \u8bc6\u522b\u7b97\u6cd5\u7248\u672c<br>
-	 * C type : unsigned char[255]
-	 */
+	/** \u8bc6\u522b\u7b97\u6cd5\u7248\u672c */
 	public byte[] ucOCRVer = new byte[255];
-	/**
-	 * EEPROM\u7248\u672c\u53f7<br>
-	 * C type : unsigned char[255]
-	 */
+	/** EEPROM\u7248\u672c\u53f7 */
 	public byte[] ucEPROMVer = new byte[255];
 	public tagVersionInfo() {
 		super();
@@ -40,18 +25,6 @@ public class tagVersionInfo extends Structure {
 	protected List<? > getFieldOrder() {
 		return Arrays.asList("ucMainVer", "ucDSPVer", "ucMCUVer", "ucOCRVer", "ucEPROMVer");
 	}
-	/**
-	 * @param ucMainVer \u4e3b\u7248\u672c<br>
-	 * C type : unsigned char[255]<br>
-	 * @param ucDSPVer \u6b21\u7248\u672c<br>
-	 * C type : unsigned char[255]<br>
-	 * @param ucMCUVer MCU\u7248\u672c<br>
-	 * C type : unsigned char[255]<br>
-	 * @param ucOCRVer \u8bc6\u522b\u7b97\u6cd5\u7248\u672c<br>
-	 * C type : unsigned char[255]<br>
-	 * @param ucEPROMVer EEPROM\u7248\u672c\u53f7<br>
-	 * C type : unsigned char[255]
-	 */
 	public tagVersionInfo(byte ucMainVer[], byte ucDSPVer[], byte ucMCUVer[], byte ucOCRVer[], byte ucEPROMVer[]) {
 		super();
 		if ((ucMainVer.length != this.ucMainVer.length)) 
@@ -72,6 +45,12 @@ public class tagVersionInfo extends Structure {
 	}
 	public tagVersionInfo(Pointer peer) {
 		super(peer);
+	}
+	protected ByReference newByReference() { return new ByReference(); }
+	protected ByValue newByValue() { return new ByValue(); }
+	protected tagVersionInfo newInstance() { return new tagVersionInfo(); }
+	public static tagVersionInfo[] newArray(int arrayLength) {
+		return Structure.newArray(tagVersionInfo.class, arrayLength);
 	}
 	public static class ByReference extends tagVersionInfo implements Structure.ByReference {
 		

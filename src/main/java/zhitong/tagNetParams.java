@@ -1,6 +1,6 @@
 package zhitong;
+import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -8,26 +8,14 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class tagNetParams extends Structure {
-	/**
-	 * \u8bbe\u5907IP<br>
-	 * C type : unsigned char[16]
-	 */
+public class tagNetParams extends Structure<tagNetParams, tagNetParams.ByValue, tagNetParams.ByReference > {
+	/** \u8bbe\u5907IP */
 	public byte[] ucDeviceIP = new byte[16];
-	/**
-	 * \u5b50\u7f51\u63a9\u7801<br>
-	 * C type : unsigned char[16]
-	 */
+	/** \u5b50\u7f51\u63a9\u7801 */
 	public byte[] ucMaskIP = new byte[16];
-	/**
-	 * \u7f51\u5173IP<br>
-	 * C type : unsigned char[16]
-	 */
+	/** \u7f51\u5173IP */
 	public byte[] ucGateIP = new byte[16];
-	/**
-	 * MAC\u5730\u5740<br>
-	 * C type : unsigned char[6]
-	 */
+	/** MAC\u5730\u5740 */
 	public byte[] ucMac = new byte[6];
 	public tagNetParams() {
 		super();
@@ -35,16 +23,6 @@ public class tagNetParams extends Structure {
 	protected List<? > getFieldOrder() {
 		return Arrays.asList("ucDeviceIP", "ucMaskIP", "ucGateIP", "ucMac");
 	}
-	/**
-	 * @param ucDeviceIP \u8bbe\u5907IP<br>
-	 * C type : unsigned char[16]<br>
-	 * @param ucMaskIP \u5b50\u7f51\u63a9\u7801<br>
-	 * C type : unsigned char[16]<br>
-	 * @param ucGateIP \u7f51\u5173IP<br>
-	 * C type : unsigned char[16]<br>
-	 * @param ucMac MAC\u5730\u5740<br>
-	 * C type : unsigned char[6]
-	 */
 	public tagNetParams(byte ucDeviceIP[], byte ucMaskIP[], byte ucGateIP[], byte ucMac[]) {
 		super();
 		if ((ucDeviceIP.length != this.ucDeviceIP.length)) 
@@ -62,6 +40,12 @@ public class tagNetParams extends Structure {
 	}
 	public tagNetParams(Pointer peer) {
 		super(peer);
+	}
+	protected ByReference newByReference() { return new ByReference(); }
+	protected ByValue newByValue() { return new ByValue(); }
+	protected tagNetParams newInstance() { return new tagNetParams(); }
+	public static tagNetParams[] newArray(int arrayLength) {
+		return Structure.newArray(tagNetParams.class, arrayLength);
 	}
 	public static class ByReference extends tagNetParams implements Structure.ByReference {
 		

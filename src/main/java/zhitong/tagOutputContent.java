@@ -1,6 +1,6 @@
 package zhitong;
+import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -8,7 +8,7 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class tagOutputContent extends Structure {
+public class tagOutputContent extends Structure<tagOutputContent, tagOutputContent.ByValue, tagOutputContent.ByReference > {
 	/** \u662f\u5426\u8f93\u51fa\u5927\u56fe */
 	public byte bOutputBigImage;
 	/** \u662f\u5426\u8f93\u51faCIF\u56fe */
@@ -21,11 +21,6 @@ public class tagOutputContent extends Structure {
 	protected List<? > getFieldOrder() {
 		return Arrays.asList("bOutputBigImage", "bOutputCIFImage", "bOutputPlateImage");
 	}
-	/**
-	 * @param bOutputBigImage \u662f\u5426\u8f93\u51fa\u5927\u56fe<br>
-	 * @param bOutputCIFImage \u662f\u5426\u8f93\u51faCIF\u56fe<br>
-	 * @param bOutputPlateImage \u662f\u5426\u8f93\u51fa\u8f66\u724c\u56fe
-	 */
 	public tagOutputContent(byte bOutputBigImage, byte bOutputCIFImage, byte bOutputPlateImage) {
 		super();
 		this.bOutputBigImage = bOutputBigImage;
@@ -34,6 +29,12 @@ public class tagOutputContent extends Structure {
 	}
 	public tagOutputContent(Pointer peer) {
 		super(peer);
+	}
+	protected ByReference newByReference() { return new ByReference(); }
+	protected ByValue newByValue() { return new ByValue(); }
+	protected tagOutputContent newInstance() { return new tagOutputContent(); }
+	public static tagOutputContent[] newArray(int arrayLength) {
+		return Structure.newArray(tagOutputContent.class, arrayLength);
 	}
 	public static class ByReference extends tagOutputContent implements Structure.ByReference {
 		

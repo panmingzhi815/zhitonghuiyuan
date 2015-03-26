@@ -1,6 +1,6 @@
 package zhitong;
+import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -8,21 +8,14 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class tagDeviceStatus extends Structure {
-	/**
-	 * \u8bbe\u5907\u53e5\u67c4<br>
-	 * C type : PDEVICEHANDLE
-	 */
+public class tagDeviceStatus extends Structure<tagDeviceStatus, tagDeviceStatus.ByValue, tagDeviceStatus.ByReference > {
+	/** \u8bbe\u5907\u53e5\u67c4 */
 	public Pointer pHandle;
-	/**
-	 * \u8bbe\u5907IP<br>
-	 * C type : unsigned char[16]
-	 */
+	/** \u8bbe\u5907IP */
 	public byte[] ucDeviceIP = new byte[16];
 	/**
 	 * @see DEVICE_STATUS<br>
-	 * \u8bbe\u5907\u72b6\u6001<br>
-	 * C type : DEVICE_STATUS
+	 * \u8bbe\u5907\u72b6\u6001
 	 */
 	public int status;
 	public tagDeviceStatus() {
@@ -31,15 +24,6 @@ public class tagDeviceStatus extends Structure {
 	protected List<? > getFieldOrder() {
 		return Arrays.asList("pHandle", "ucDeviceIP", "status");
 	}
-	/**
-	 * @param pHandle \u8bbe\u5907\u53e5\u67c4<br>
-	 * C type : PDEVICEHANDLE<br>
-	 * @param ucDeviceIP \u8bbe\u5907IP<br>
-	 * C type : unsigned char[16]<br>
-	 * @param status @see DEVICE_STATUS<br>
-	 * \u8bbe\u5907\u72b6\u6001<br>
-	 * C type : DEVICE_STATUS
-	 */
 	public tagDeviceStatus(Pointer pHandle, byte ucDeviceIP[], int status) {
 		super();
 		this.pHandle = pHandle;
@@ -50,6 +34,12 @@ public class tagDeviceStatus extends Structure {
 	}
 	public tagDeviceStatus(Pointer peer) {
 		super(peer);
+	}
+	protected ByReference newByReference() { return new ByReference(); }
+	protected ByValue newByValue() { return new ByValue(); }
+	protected tagDeviceStatus newInstance() { return new tagDeviceStatus(); }
+	public static tagDeviceStatus[] newArray(int arrayLength) {
+		return Structure.newArray(tagDeviceStatus.class, arrayLength);
 	}
 	public static class ByReference extends tagDeviceStatus implements Structure.ByReference {
 		

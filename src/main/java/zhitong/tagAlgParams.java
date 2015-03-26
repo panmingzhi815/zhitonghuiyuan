@@ -1,6 +1,6 @@
 package zhitong;
+import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -8,11 +8,10 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class tagAlgParams extends Structure {
+public class tagAlgParams extends Structure<tagAlgParams, tagAlgParams.ByValue, tagAlgParams.ByReference > {
 	/**
 	 * @see TRIGGER_MODE<br>
-	 * \u7ebf\u5708\u89e6\u53d1\u6216\u89c6\u9891\u89e6\u53d1<br>
-	 * C type : TRIGGER_MODE
+	 * \u7ebf\u5708\u89e6\u53d1\u6216\u89c6\u9891\u89e6\u53d1
 	 */
 	public int TriggerMode;
 	/** \u68c0\u6d4b\u533a\u57df\u5de6\u8fb9\u754c */
@@ -25,8 +24,7 @@ public class tagAlgParams extends Structure {
 	public short usBottom;
 	/**
 	 * @see MAINDIRECT<br>
-	 * \u4e3b\u884c\u65b9\u5411\uff1a\u5de6\u4e0a\uff0c\u5de6\u4e0b\uff0c\u53f3\u4e0a\uff0c\u53f3\u4e0b<br>
-	 * C type : MAINDIRECT
+	 * \u4e3b\u884c\u65b9\u5411\uff1a\u5de6\u4e0a\uff0c\u5de6\u4e0b\uff0c\u53f3\u4e0a\uff0c\u53f3\u4e0b
 	 */
 	public int MainDirect;
 	/** \u662f\u5426\u6293\u62cd\u9006\u884c */
@@ -37,19 +35,6 @@ public class tagAlgParams extends Structure {
 	protected List<? > getFieldOrder() {
 		return Arrays.asList("TriggerMode", "usLeft", "usTop", "usRight", "usBottom", "MainDirect", "bGetOppEn");
 	}
-	/**
-	 * @param TriggerMode @see TRIGGER_MODE<br>
-	 * \u7ebf\u5708\u89e6\u53d1\u6216\u89c6\u9891\u89e6\u53d1<br>
-	 * C type : TRIGGER_MODE<br>
-	 * @param usLeft \u68c0\u6d4b\u533a\u57df\u5de6\u8fb9\u754c<br>
-	 * @param usTop \u68c0\u6d4b\u533a\u57df\u4e0a\u8fb9\u754c<br>
-	 * @param usRight \u68c0\u6d4b\u533a\u57df\u53f3\u8fb9\u754c<br>
-	 * @param usBottom \u68c0\u6d4b\u533a\u57df\u4e0b\u8fb9\u754c<br>
-	 * @param MainDirect @see MAINDIRECT<br>
-	 * \u4e3b\u884c\u65b9\u5411\uff1a\u5de6\u4e0a\uff0c\u5de6\u4e0b\uff0c\u53f3\u4e0a\uff0c\u53f3\u4e0b<br>
-	 * C type : MAINDIRECT<br>
-	 * @param bGetOppEn \u662f\u5426\u6293\u62cd\u9006\u884c
-	 */
 	public tagAlgParams(int TriggerMode, short usLeft, short usTop, short usRight, short usBottom, int MainDirect, byte bGetOppEn) {
 		super();
 		this.TriggerMode = TriggerMode;
@@ -62,6 +47,12 @@ public class tagAlgParams extends Structure {
 	}
 	public tagAlgParams(Pointer peer) {
 		super(peer);
+	}
+	protected ByReference newByReference() { return new ByReference(); }
+	protected ByValue newByValue() { return new ByValue(); }
+	protected tagAlgParams newInstance() { return new tagAlgParams(); }
+	public static tagAlgParams[] newArray(int arrayLength) {
+		return Structure.newArray(tagAlgParams.class, arrayLength);
 	}
 	public static class ByReference extends tagAlgParams implements Structure.ByReference {
 		

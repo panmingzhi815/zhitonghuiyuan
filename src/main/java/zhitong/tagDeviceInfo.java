@@ -1,6 +1,6 @@
 package zhitong;
+import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -8,21 +8,12 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class tagDeviceInfo extends Structure {
-	/**
-	 * \u8bbe\u5907\u7f51\u7edc\u4fe1\u606f\u53c2\u6570<br>
-	 * C type : NetParams
-	 */
+public class tagDeviceInfo extends Structure<tagDeviceInfo, tagDeviceInfo.ByValue, tagDeviceInfo.ByReference > {
+	/** \u8bbe\u5907\u7f51\u7edc\u4fe1\u606f\u53c2\u6570 */
 	public tagNetParams DeviceNetInfo;
-	/**
-	 * MAC\u5730\u5740<br>
-	 * C type : unsigned char[6]
-	 */
+	/** MAC\u5730\u5740 */
 	public byte[] ucMAC = new byte[6];
-	/**
-	 * \u8bbe\u5907\u7248\u672c\u4fe1\u606f<br>
-	 * C type : unsigned char[255]
-	 */
+	/** \u8bbe\u5907\u7248\u672c\u4fe1\u606f */
 	public byte[] ucDeviceVersion = new byte[255];
 	/** \u7528\u6237\u8fde\u63a5\u6570 */
 	public byte ucConnectNum;
@@ -32,15 +23,6 @@ public class tagDeviceInfo extends Structure {
 	protected List<? > getFieldOrder() {
 		return Arrays.asList("DeviceNetInfo", "ucMAC", "ucDeviceVersion", "ucConnectNum");
 	}
-	/**
-	 * @param DeviceNetInfo \u8bbe\u5907\u7f51\u7edc\u4fe1\u606f\u53c2\u6570<br>
-	 * C type : NetParams<br>
-	 * @param ucMAC MAC\u5730\u5740<br>
-	 * C type : unsigned char[6]<br>
-	 * @param ucDeviceVersion \u8bbe\u5907\u7248\u672c\u4fe1\u606f<br>
-	 * C type : unsigned char[255]<br>
-	 * @param ucConnectNum \u7528\u6237\u8fde\u63a5\u6570
-	 */
 	public tagDeviceInfo(tagNetParams DeviceNetInfo, byte ucMAC[], byte ucDeviceVersion[], byte ucConnectNum) {
 		super();
 		this.DeviceNetInfo = DeviceNetInfo;
@@ -54,6 +36,12 @@ public class tagDeviceInfo extends Structure {
 	}
 	public tagDeviceInfo(Pointer peer) {
 		super(peer);
+	}
+	protected ByReference newByReference() { return new ByReference(); }
+	protected ByValue newByValue() { return new ByValue(); }
+	protected tagDeviceInfo newInstance() { return new tagDeviceInfo(); }
+	public static tagDeviceInfo[] newArray(int arrayLength) {
+		return Structure.newArray(tagDeviceInfo.class, arrayLength);
 	}
 	public static class ByReference extends tagDeviceInfo implements Structure.ByReference {
 		

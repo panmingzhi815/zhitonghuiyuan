@@ -1,6 +1,6 @@
 package zhitong;
+import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -8,7 +8,7 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class tagParamsInfo extends Structure {
+public class tagParamsInfo extends Structure<tagParamsInfo, tagParamsInfo.ByValue, tagParamsInfo.ByReference > {
 	/** \u4e3b\u6307\u4ee4 */
 	public byte ucMainCmd;
 	/** \u6b21\u6307\u4ee4 */
@@ -21,10 +21,7 @@ public class tagParamsInfo extends Structure {
 	public byte ucCmdType;
 	/** \u547d\u4ee4\u957f\u5ea6 */
 	public short usCmdLen;
-	/**
-	 * \u547d\u4ee4\u5185\u5bb9<br>
-	 * C type : unsigned char[512]
-	 */
+	/** \u547d\u4ee4\u5185\u5bb9 */
 	public byte[] ucCmd = new byte[512];
 	public tagParamsInfo() {
 		super();
@@ -32,16 +29,6 @@ public class tagParamsInfo extends Structure {
 	protected List<? > getFieldOrder() {
 		return Arrays.asList("ucMainCmd", "ucSubCmd", "bHasObject", "ucObject", "ucCmdType", "usCmdLen", "ucCmd");
 	}
-	/**
-	 * @param ucMainCmd \u4e3b\u6307\u4ee4<br>
-	 * @param ucSubCmd \u6b21\u6307\u4ee4<br>
-	 * @param bHasObject \u662f\u5426\u6709\u5bf9\u8c61\u53f7<br>
-	 * @param ucObject \u5bf9\u8c61\u53f7<br>
-	 * @param ucCmdType \u547d\u4ee4\u7c7b\u578b\uff0c\u8bfb\u6216\u8005\u5199<br>
-	 * @param usCmdLen \u547d\u4ee4\u957f\u5ea6<br>
-	 * @param ucCmd \u547d\u4ee4\u5185\u5bb9<br>
-	 * C type : unsigned char[512]
-	 */
 	public tagParamsInfo(byte ucMainCmd, byte ucSubCmd, byte bHasObject, byte ucObject, byte ucCmdType, short usCmdLen, byte ucCmd[]) {
 		super();
 		this.ucMainCmd = ucMainCmd;
@@ -56,6 +43,12 @@ public class tagParamsInfo extends Structure {
 	}
 	public tagParamsInfo(Pointer peer) {
 		super(peer);
+	}
+	protected ByReference newByReference() { return new ByReference(); }
+	protected ByValue newByValue() { return new ByValue(); }
+	protected tagParamsInfo newInstance() { return new tagParamsInfo(); }
+	public static tagParamsInfo[] newArray(int arrayLength) {
+		return Structure.newArray(tagParamsInfo.class, arrayLength);
 	}
 	public static class ByReference extends tagParamsInfo implements Structure.ByReference {
 		
