@@ -66,7 +66,12 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 			PointerByReference pHandle = new PointerByReference();
 			ByteBuffer sendBuffer=ByteBuffer.wrap(ip.getBytes("UTF-8"));
 			result = ZhitongLibrary.INSTANCE.LPR_ConnectCamera(sendBuffer,pHandle);
+
+			LOGGER.info("PointerReference Value" +pHandle.getValue().toString());
+			LOGGER.info("PointerReference Pointer" +pHandle.getPointer().toString());
+
 			pointerMap.put(ip, pHandle);
+
 			LOGGER.info("连接智通慧眼设备：{} 返回状态:{}",ip,result);
 		}catch(Exception e){
 			LOGGER.error("打开智通慧眼设备发生异常",e);
@@ -80,7 +85,7 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 		int result = 0;
 		Set<String> keySet = pointerMap.keySet();
 		for (String string : keySet) {
-			int lpr_DisconnectCamera = ZhitongLibrary.INSTANCE.LPR_DisconnectCamera(pointerMap.get(string).getPointer());
+			int lpr_DisconnectCamera = ZhitongLibrary.INSTANCE.LPR_DisconnectCamera(pointerMap.get(string).getValue());
 			LOGGER.info("断开智通慧眼设备：{},返回状态为：{}",string,lpr_DisconnectCamera);
 		}
 		ZhitongLibrary.INSTANCE.LPR_Quit();
@@ -94,7 +99,7 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 		int result = 0;
 		try{
 			if(pointerMap.get(ip) != null){			
-				result = ZhitongLibrary.INSTANCE.LPR_Capture(pointerMap.get(ip).getPointer());
+				result = ZhitongLibrary.INSTANCE.LPR_Capture(pointerMap.get(ip).getValue());
 				LOGGER.info("手动触发智通慧眼设备：{} 返回状态:{}",ip,result);
 			}
 		}catch(Exception e){
