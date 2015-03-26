@@ -1,6 +1,6 @@
 package com.donglu.card.hardware.zhitonghuiyuan;
 
-import com.donglu.card.hardware.zhitonghuiyuan.callback.VehicleDataCallback;
+import zhitong.ZhitongLibrary;
 
 public interface ZhiTongHuiYuan {
 
@@ -23,5 +23,5 @@ public interface ZhiTongHuiYuan {
 	 * @param dataCallback 结里回调信息
 	 * @return 0为成功，其他为异常
 	 */
-	public int openDevice(String ip, VehicleDataCallback dataCallback);
+	public int openDevice(String ip, ZhitongLibrary.VehicleDataCallback dataCallback);
 }

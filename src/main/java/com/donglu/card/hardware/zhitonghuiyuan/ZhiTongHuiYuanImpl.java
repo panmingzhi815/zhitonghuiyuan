@@ -1,6 +1,7 @@
 package com.donglu.card.hardware.zhitonghuiyuan;
 
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -9,61 +10,63 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.donglu.card.hardware.zhitonghuiyuan.callback.DeviceInfoCallback;
-import com.donglu.card.hardware.zhitonghuiyuan.callback.DeviceStatusCallback;
-import com.donglu.card.hardware.zhitonghuiyuan.callback.JPGStreamCallBack;
-import com.donglu.card.hardware.zhitonghuiyuan.callback.VehicleDataCallback;
-import com.donglu.card.hardware.zhitonghuiyuan.struct.TagDeviceInfo;
-import com.donglu.card.hardware.zhitonghuiyuan.struct.TagDeviceStatus;
-import com.donglu.card.hardware.zhitonghuiyuan.struct.TagJPGData;
-import com.donglu.card.hardware.zhitonghuiyuan.struct.TagVehicleData;
-import com.sun.jna.Native;
+import zhitong.ZhitongLibrary;
+import zhitong.tagDeviceInfo;
+import zhitong.tagDeviceStatus;
+import zhitong.tagJPGData;
+import zhitong.tagVehicleData;
+
 import com.sun.jna.NativeLibrary;
 import com.sun.jna.Pointer;
-import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.PointerByReference;
 
 public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ZhiTongHuiYuanImpl.class);
 	private static final String LIBRARY_NAME = "LPRSDK";
-	private static final ZhiTongHuiYuanNativeJNA HvDevice;
-	private static final Map<String,IntByReference> pointerMap = new HashMap<String,IntByReference>();
+//	private static final ZhitongLibrary HvDevice;
+	private static final Map<String,PointerByReference> pointerMap = new HashMap<String,PointerByReference>();
 
 	static {
 		System.setProperty("jna.encoding", "GB2312");
 		String path = System.getProperty("user.dir") + File.separator + "native";
 		NativeLibrary.addSearchPath(LIBRARY_NAME, path);
-		HvDevice = (ZhiTongHuiYuanNativeJNA) Native.loadLibrary(LIBRARY_NAME, ZhiTongHuiYuanNativeJNA.class);
+//		HvDevice = (ZhitongLibrary) Native.loadLibrary(LIBRARY_NAME, ZhitongLibrary.class);
 	}
 
-	public int openDevice(String ip,VehicleDataCallback dataCallback) {
+	public int openDevice(String ip,ZhitongLibrary.VehicleDataCallback dataCallback) {
 		LOGGER.info("打开智通慧眼设备：{}",ip);
 		
 		int result = 0;
 		try{
-			DeviceInfoCallback deviceInfoCallback = new DeviceInfoCallback() {
+			zhitong.ZhitongLibrary.DeviceInfoCallback deviceInfoCallback = new ZhitongLibrary.DeviceInfoCallback() {
 				
-				public void invoke(Pointer pUserData, TagDeviceInfo tagDeviceInfo) {
-					LOGGER.info("DeviceInfoCallback invoke");
+				public void apply(Pointer pUserData, tagDeviceInfo pDeviceInfo) {
+					// TODO Auto-generated method stub
+					
 				}
 			};
-			DeviceStatusCallback deviceStatusCallback = new DeviceStatusCallback() {
+			zhitong.ZhitongLibrary.JPGStreamCallBack jpgStreamCallBack = new ZhitongLibrary.JPGStreamCallBack() {
 				
-				public void invoke(Pointer pUserData, TagDeviceStatus pStatus) {
-					LOGGER.info("DeviceStatusCallback invoke");
+				public void apply(Pointer pUserData, tagJPGData pJPGData) {
+					// TODO Auto-generated method stub
+					
 				}
 			};
-			JPGStreamCallBack jpgStreamCallBack = new JPGStreamCallBack() {
+			zhitong.ZhitongLibrary.DeviceStatusCallback deviceStatusCallback = new ZhitongLibrary.DeviceStatusCallback() {
 				
-				public void invoke(Pointer pUserData, TagJPGData pJPGData) {
-					LOGGER.info("JPGStreamCallBack invoke");
+				public void apply(Pointer pUserData, tagDeviceStatus pStatus) {
+					// TODO Auto-generated method stub
+					
 				}
 			};
-			int lpr_Init = HvDevice.LPR_Init(null,Pointer.NULL, deviceInfoCallback, deviceStatusCallback, dataCallback, jpgStreamCallBack);
-			LOGGER.info("初始化智通慧眼设备：{} 返回状态:{}",ip,lpr_Init);
-			IntByReference hwnd = new IntByReference(1);
-			result = HvDevice.LPR_ConnectCamera(ip, hwnd);
-			pointerMap.put(ip, hwnd);
+			
+			int lpr_Init2 = ZhitongLibrary.INSTANCE.LPR_Init(null, Pointer.NULL, deviceInfoCallback, deviceStatusCallback, dataCallback, jpgStreamCallBack);
+			LOGGER.info("初始化智通慧眼设备：{} 返回状态:{}",ip,lpr_Init2);
+			PointerByReference pHandle = new PointerByReference();
+			ByteBuffer sendBuffer=ByteBuffer.wrap(ip.getBytes("UTF-8"));
+			result = ZhitongLibrary.INSTANCE.LPR_ConnectCamera(sendBuffer,pHandle);
+			pointerMap.put(ip, pHandle);
 			LOGGER.info("连接智通慧眼设备：{} 返回状态:{}",ip,result);
 		}catch(Exception e){
 			LOGGER.error("打开智通慧眼设备发生异常",e);
@@ -77,11 +80,11 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 		int result = 0;
 		Set<String> keySet = pointerMap.keySet();
 		for (String string : keySet) {
-			int lpr_DisconnectCamera = HvDevice.LPR_DisconnectCamera(pointerMap.get(string));
+			int lpr_DisconnectCamera = ZhitongLibrary.INSTANCE.LPR_DisconnectCamera(pointerMap.get(string).getPointer());
 			LOGGER.info("断开智通慧眼设备：{},返回状态为：{}",string,lpr_DisconnectCamera);
 		}
-		result = HvDevice.LPR_Quit();
-		LOGGER.info("释放智通慧眼动态库返回状态:{}",result);
+		ZhitongLibrary.INSTANCE.LPR_Quit();
+		LOGGER.info("释放智通慧眼动态库");
 		return result;
 	}
 
@@ -91,7 +94,7 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 		int result = 0;
 		try{
 			if(pointerMap.get(ip) != null){			
-				result = HvDevice.LPR_Capture(pointerMap.get(ip));
+				result = ZhitongLibrary.INSTANCE.LPR_Capture(pointerMap.get(ip).getPointer());
 				LOGGER.info("手动触发智通慧眼设备：{} 返回状态:{}",ip,result);
 			}
 		}catch(Exception e){
@@ -101,23 +104,28 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 	}
 	
 	public static void main(String[] args) {
-		VehicleDataCallback vehicleDataCallback = new VehicleDataCallback() {
-			public void invoke(Pointer pUserData, TagVehicleData pData) {
-				LOGGER.info("收到车牌识别仪{} 车牌结果{}",pData.ucDeviceIP,pData.ucPlate);
+		try{
+			zhitong.ZhitongLibrary.VehicleDataCallback vehicleDataCallback2 = new ZhitongLibrary.VehicleDataCallback() {
+				
+				public void apply(Pointer pUserData, tagVehicleData pData) {
+					LOGGER.info("收到车牌识别仪{} 车牌结果{}",pData.ucDeviceIP,pData.ucPlate);
+				}
+			};
+			
+			ZhiTongHuiYuan zhiTongHuiYuan = new ZhiTongHuiYuanImpl();
+			zhiTongHuiYuan.openDevice(args[0], vehicleDataCallback2);
+			
+			for (int i = 0; i < 2; i++) {
+				try {
+					TimeUnit.SECONDS.sleep(10);
+					zhiTongHuiYuan.tiggerDevice(args[0]);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		};
-		
-		ZhiTongHuiYuan zhiTongHuiYuan = new ZhiTongHuiYuanImpl();
-		zhiTongHuiYuan.openDevice(args[0], vehicleDataCallback);
-		
-		for (int i = 0; i < 500; i++) {
-			try {
-				TimeUnit.SECONDS.sleep(5);
-				zhiTongHuiYuan.tiggerDevice(args[0]);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}catch(Exception e){
+			LOGGER.error("程序运行是发生异常",e);
 		}
 	}
 
