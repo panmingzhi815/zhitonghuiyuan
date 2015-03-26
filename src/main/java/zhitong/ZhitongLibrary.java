@@ -211,16 +211,16 @@ public interface ZhitongLibrary extends StdCallLibrary {
 	public static final int CMD_WRITE = (int)1;
 	public static final int ENABLE_FUNCTION = (int)1;
 	public static final int DISABLE_FUNCTION = (int)0;
-	public interface DeviceInfoCallback extends Callback {
+	public interface DeviceInfoCallback extends StdCallLibrary.StdCallCallback {
 		void apply(Pointer pUserData, tagDeviceInfo pDeviceInfo);
 	};
-	public interface DeviceStatusCallback extends Callback {
+	public interface DeviceStatusCallback extends StdCallLibrary.StdCallCallback {
 		void apply(Pointer pUserData, tagDeviceStatus pStatus);
 	};
-	public interface VehicleDataCallback extends Callback {
+	public interface VehicleDataCallback extends StdCallLibrary.StdCallCallback {
 		void apply(Pointer pUserData, tagVehicleData pData);
 	};
-	public interface JPGStreamCallBack extends Callback {
+	public interface JPGStreamCallBack extends StdCallLibrary.StdCallCallback {
 		void apply(Pointer pUserData, tagJPGData pJPGData);
 	};
 	int LPR_IsWriteLog(byte bWriteLog);
