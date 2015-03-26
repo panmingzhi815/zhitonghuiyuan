@@ -1,7 +1,6 @@
 package com.donglu.card.hardware.zhitonghuiyuan;
 
 import java.io.File;
-import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -64,16 +63,15 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 			int lpr_Init2 = ZhitongLibrary.INSTANCE.LPR_Init(null, Pointer.NULL, deviceInfoCallback, deviceStatusCallback, dataCallback, jpgStreamCallBack);
 			LOGGER.info("初始化智通慧眼设备：{} 返回状态:{}",ip,lpr_Init2);
 			PointerByReference pHandle = new PointerByReference();
+//			LOGGER.info("PointerReference Pointer before call: " +pHandle.getPointer().toString());
+//			LOGGER.info("PointerReference Value before call: " +pHandle.getValue().toString());
 
-			LOGGER.info("PointerReference Pointer before call: " +pHandle.getPointer().toString());
-			LOGGER.info("PointerReference Value before call: " +pHandle.getValue().toString());
-
-			ByteBuffer sendBuffer=ByteBuffer.wrap(ip.getBytes("UTF-8"));
-			result = ZhitongLibrary.INSTANCE.LPR_ConnectCamera(sendBuffer,pHandle);
-
+//			ByteBuffer sendBuffer=ByteBuffer.wrap(ip.getBytes("UTF-8"));
+//			result = ZhitongLibrary.INSTANCE.LPR_ConnectCamera(sendBuffer,pHandle);
+//
 			LOGGER.info("PointerReference Value after call: " +pHandle.getValue().toString());
 			LOGGER.info("PointerReference Pointer after call: " +pHandle.getPointer().toString());
-
+//
 			pointerMap.put(ip, pHandle);
 
 			LOGGER.info("连接智通慧眼设备：{} 返回状态:{}",ip,result);
@@ -103,7 +101,7 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 		int result = 0;
 		try{
 			if(pointerMap.get(ip) != null){			
-				result = ZhitongLibrary.INSTANCE.LPR_Capture(pointerMap.get(ip).getValue());
+//				result = ZhitongLibrary.INSTANCE.LPR_Capture(pointerMap.get(ip).getValue());
 				LOGGER.info("手动触发智通慧眼设备：{} 返回状态:{}",ip,result);
 			}
 		}catch(Exception e){
@@ -117,22 +115,21 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 			zhitong.ZhitongLibrary.VehicleDataCallback vehicleDataCallback2 = new ZhitongLibrary.VehicleDataCallback() {
 				
 				public void apply(Pointer pUserData, tagVehicleData pData) {
-					LOGGER.info("收到车牌识别仪{} 车牌结果{}",pData.ucDeviceIP,pData.ucPlate);
+//					LOGGER.info("收到车牌识别仪{} 车牌结果{}",pData.ucDeviceIP,pData.ucPlate);
 				}
 			};
 			
 			ZhiTongHuiYuan zhiTongHuiYuan = new ZhiTongHuiYuanImpl();
 			zhiTongHuiYuan.openDevice(args[0], vehicleDataCallback2);
 			
-			for (int i = 0; i < 2; i++) {
-				try {
-					TimeUnit.SECONDS.sleep(10);
-					zhiTongHuiYuan.tiggerDevice(args[0]);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			try {
+				TimeUnit.SECONDS.sleep(5);
+				zhiTongHuiYuan.tiggerDevice(args[0]);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			zhiTongHuiYuan.closeDevice();
 		}catch(Exception e){
 			LOGGER.error("程序运行是发生异常",e);
 		}

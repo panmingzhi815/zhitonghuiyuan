@@ -10,6 +10,8 @@
 		<slf4j.version>1.7.10</slf4j.version>
 		<logback.version>1.1.2</logback.version>
 		<jnaerator.version>0.12</jnaerator.version>
+		<swt.version>3.3.0-v3346</swt.version>
+		<jface.version>3.3.0-I20070606-0010</jface.version>
 	</properties>
 
 	<dependencies>
@@ -47,6 +49,18 @@
 			<version>${jnaerator.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.eclipse.swt.win32.win32</groupId>
+			<artifactId>x86</artifactId>
+			<version>${swt.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>jface</artifactId>
+			<version>${jface.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -59,7 +73,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.donglu.card.hardware.zhitonghuiyuan.ZhiTongHuiYuanImpl</mainClass>
+							<mainClass>com.donglu.card.hardware.zhitonghuiyuan</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
