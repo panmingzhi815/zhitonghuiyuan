@@ -64,11 +64,15 @@ public class ZhiTongHuiYuanImpl implements ZhiTongHuiYuan {
 			int lpr_Init2 = ZhitongLibrary.INSTANCE.LPR_Init(null, Pointer.NULL, deviceInfoCallback, deviceStatusCallback, dataCallback, jpgStreamCallBack);
 			LOGGER.info("初始化智通慧眼设备：{} 返回状态:{}",ip,lpr_Init2);
 			PointerByReference pHandle = new PointerByReference();
+
+			LOGGER.info("PointerReference Pointer before call: " +pHandle.getPointer().toString());
+			LOGGER.info("PointerReference Value before call: " +pHandle.getValue().toString());
+
 			ByteBuffer sendBuffer=ByteBuffer.wrap(ip.getBytes("UTF-8"));
 			result = ZhitongLibrary.INSTANCE.LPR_ConnectCamera(sendBuffer,pHandle);
 
-			LOGGER.info("PointerReference Value" +pHandle.getValue().toString());
-			LOGGER.info("PointerReference Pointer" +pHandle.getPointer().toString());
+			LOGGER.info("PointerReference Value after call: " +pHandle.getValue().toString());
+			LOGGER.info("PointerReference Pointer after call: " +pHandle.getPointer().toString());
 
 			pointerMap.put(ip, pHandle);
 
