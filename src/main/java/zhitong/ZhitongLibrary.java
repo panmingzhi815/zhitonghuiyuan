@@ -227,8 +227,8 @@ public interface ZhitongLibrary extends StdCallLibrary {
 	@Deprecated 
 	int LPR_GetErrorMsg(int FeekCode, Pointer pchErrMsg);
 	int LPR_GetErrorMsg(int FeekCode, ByteBuffer pchErrMsg);
-	int LPR_Init(ZhitongLibrary.HWND hWnd, Pointer pUserData, ZhitongLibrary.DeviceInfoCallback fucDeviceInfo, ZhitongLibrary.DeviceStatusCallback fucStatus, ZhitongLibrary.VehicleDataCallback fucVehicleData, ZhitongLibrary.JPGStreamCallBack fucJPGStream);
-	ZhitongLibrary.WINAPI LPR_Quit();
+	int LPR_Init(com.sun.jna.platform.win32.WinDef.HWND hWnd, Pointer pUserData, ZhitongLibrary.DeviceInfoCallback fucDeviceInfo, ZhitongLibrary.DeviceStatusCallback fucStatus, ZhitongLibrary.VehicleDataCallback fucVehicleData, ZhitongLibrary.JPGStreamCallBack fucJPGStream);
+	void LPR_Quit();
 	int LPR_ScanDevice();
 	int LPR_SetNetParams(Pointer pHandle, tagNetParams pOldParams, tagNetParams pNewParams);
 	int LPR_ControlContent(tagOutputContent pContent);
@@ -246,22 +246,4 @@ public interface ZhitongLibrary extends StdCallLibrary {
 	int LPR_NTPEnable(Pointer pHandle, byte bNTP, Pointer pchNTPSeverIP);
 	int LPR_NTPEnable(Pointer pHandle, byte bNTP, ByteBuffer pchNTPSeverIP);
 	int LPR_GetAllVersion(Pointer pHandle, tagVersionInfo pVerInfo);
-	/** Pointer to unknown (opaque) type */
-	public static class WINAPI extends PointerType {
-		public WINAPI(Pointer address) {
-			super(address);
-		}
-		public WINAPI() {
-			super();
-		}
-	};
-	/** Pointer to unknown (opaque) type */
-	public static class HWND extends PointerType {
-		public HWND(Pointer address) {
-			super(address);
-		}
-		public HWND() {
-			super();
-		}
-	};
 }
