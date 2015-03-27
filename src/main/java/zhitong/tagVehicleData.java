@@ -1,6 +1,8 @@
 package zhitong;
 import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
+import com.sun.jna.ptr.PointerByReference;
+
 import java.util.Arrays;
 import java.util.List;
 /**
@@ -84,5 +86,6 @@ public class tagVehicleData extends Structure<tagVehicleData, tagVehicleData.ByV
 	};
 	public static class ByValue extends tagVehicleData implements Structure.ByValue {
 		
-	};
+	}
+	
 }
